@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solara — Project Management & AI Implementation</title>
+  <meta name="description" content="Solara — project management, AI implementation, and cross-border consulting for service businesses that are busy but not growing the way they should be. Restoration, plumbing, HVAC, real estate.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Solara",
+    "founder": "Juan Leopoldo Boeckh Soltero",
+    "description": "Project management, AI implementation, and cross-border consulting for service businesses — restoration, plumbing, HVAC, real estate, property management.",
+    "areaServed": ["US", "MX"],
+    "url": "https://solarassoc.com",
+    "email": "juanboeckh@gmail.com",
+    "knowsLanguage": ["English", "Spanish"]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --terra: #c2714f;
+      --terra-dark: #8b4a2f;
+      --terra-light: #e8c4aa;
+      --cream: #f7f3ee;
+      --cream-dark: #ede5d8;
+      --earth: #3d2b1f;
+      --earth-mid: #6b4c3b;
+      --sage: #5a6b4e;
+      --sage-light: #8fa67e;
+      --gold: #c9922a;
+      --sky: #4a6fa5;
+      --white: #ffffff;
+      --text: #2a1f18;
+      --text-mid: #5c4033;
+      --text-light: #8a6f5e;
+      --border: #ddd0c4;
+      --radius: 4px;
+      font-size: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: Georgia, 'Times New Roman', serif; background: var(--cream); color: var(--text); line-height: 1.7; }
+
+    h1, h2, h3, h4 { font-family: Georgia, serif; font-weight: normal; line-height: 1.25; }
+    .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(247,243,238,0.96);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px;
+      backdrop-filter: blur(8px);
+    }
+    .nav-name { font-size: 17px; font-weight: normal; color: var(--earth); letter-spacing: 0.02em; }
+    .nav-name span { color: var(--terra); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13px; color: var(--text-mid); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--terra); }
+    .lang-toggle { font-family: -apple-system, sans-serif; font-size: 12px; padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; background: transparent; color: var(--text-mid); cursor: pointer; letter-spacing: 0.06em; transition: all 0.2s; }
+    .lang-toggle:hover { background: var(--terra); color: white; border-color: var(--terra); }
+
+    /* Hero */
+    .hero { min-height: 90vh; display: flex; align-items: center; padding-top: 64px; background: var(--cream); }
+    .hero-content { max-width: 780px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+    .hero-eyebrow { font-family: -apple-system, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terra); margin-bottom: 1.25rem; }
+    .hero-title { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--earth); margin-bottom: 1.5rem; line-height: 1.15; }
+    .hero-title em { color: var(--terra); font-style: normal; }
+    .hero-sub { font-size: 1.1875rem; color: var(--text-mid); margin-bottom: 2.5rem; line-height: 1.75; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .btn-primary {
+      display: inline-block; font-family: -apple-system, sans-serif;
+      font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 14px 28px; background: var(--terra); color: white;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s; border-radius: var(--radius);
+    }
+    .btn-primary:hover { background: var(--terra-dark); }
+    .btn-outline {
+      display: inline-block; font-family: -apple-system, sans-serif;
+      font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 13px 28px; background: transparent; color: var(--terra);
+      text-decoration: none; border: 1px solid var(--terra); cursor: pointer;
+      transition: all 0.2s; border-radius: var(--radius); margin-left: 12px;
+    }
+    .btn-outline:hover { background: var(--terra); color: white; }
+
+    .h-rule { height: 3px; background: var(--terra); width: 48px; margin: 1.5rem auto; }
+    .h-rule-full { height: 1px; background: var(--border); margin: 0; }
+
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-family: -apple-system, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terra); margin-bottom: 1rem; }
+    .section-title { font-size: clamp(1.5rem, 3vw, 2.25rem); color: var(--earth); margin-bottom: 1.5rem; }
+    .section-center { text-align: center; }
+    .section-center .h-rule { margin-left: auto; margin-right: auto; }
+
+    /* Services */
+    .services { background: var(--white); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .service-card { background: var(--cream); border: 1px solid var(--border); padding: 2rem; border-top: 3px solid var(--terra); }
+    .service-number { font-family: -apple-system, sans-serif; font-size: 11px; color: var(--terra); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+    .service-title { font-size: 1.25rem; color: var(--earth); margin-bottom: 1rem; }
+    .service-body { font-family: -apple-system, sans-serif; font-size: 14px; color: var(--text-light); line-height: 1.65; }
+    .service-list { margin-top: 1rem; padding-left: 0; list-style: none; }
+    .service-list li { font-family: -apple-system, sans-serif; font-size: 13px; color: var(--text-mid); padding: 5px 0; border-bottom: 1px solid var(--cream-dark); display: flex; align-items: flex-start; gap: 8px; }
+    .service-list li::before { content: '→'; color: var(--terra); flex-shrink: 0; }
+
+    /* Who I serve */
+    .serve { background: var(--earth); color: var(--cream); }
+    .serve .section-label { color: var(--terra-light); }
+    .serve .section-title { color: var(--white); }
+    .serve-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .serve-item { border: 1px solid rgba(255,255,255,0.12); padding: 1.5rem; }
+    .serve-item-title { font-size: 1.0625rem; color: var(--terra-light); margin-bottom: 0.5rem; }
+    .serve-item-body { font-family: -apple-system, sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .serve-bridge { margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.12); font-size: 1.125rem; color: rgba(255,255,255,0.8); font-style: italic; text-align: center; }
+
+    /* How it works */
+    .how { background: var(--cream-dark); }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+    .how-step { text-align: center; }
+    .how-number { font-family: Georgia, serif; font-size: 2.5rem; color: var(--terra-light); margin-bottom: 1rem; }
+    .how-title { font-size: 1.1875rem; color: var(--earth); margin-bottom: 0.75rem; }
+    .how-body { font-family: -apple-system, sans-serif; font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+
+    /* Credibility */
+    .credibility { background: var(--white); }
+    .credibility-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .credibility-body { font-size: 1.125rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 1.5rem; }
+    .credibility-link { font-family: -apple-system, sans-serif; font-size: 13px; letter-spacing: 0.05em; }
+    .credibility-link a { color: var(--terra); text-decoration: none; }
+    .credibility-link a:hover { text-decoration: underline; }
+
+    /* Results */
+    .results { background: var(--cream-dark); text-align: center; }
+    .results-inner { max-width: 640px; margin: 0 auto; }
+    .results-body { font-size: 1.0625rem; color: var(--text-mid); line-height: 1.8; }
+
+    /* Contact */
+    .contact { background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; }
+    .contact-intro { font-size: 1.125rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 2rem; }
+    .contact-detail { font-family: -apple-system, sans-serif; font-size: 13px; color: var(--text-light); margin-bottom: 0.5rem; }
+    .contact-detail a { color: var(--terra); text-decoration: none; }
+    .contact-detail a:hover { text-decoration: underline; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; font-family: -apple-system, sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
+    .form-input, .form-textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border); background: var(--cream); color: var(--text); font-family: Georgia, serif; font-size: 15px; border-radius: var(--radius); transition: border-color 0.2s; }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--terra); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-submit { width: 100%; padding: 14px; background: var(--terra); color: white; border: none; font-family: -apple-system, sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: var(--radius); transition: background 0.2s; margin-top: 0.5rem; }
+    .form-submit:hover { background: var(--terra-dark); }
+    .form-success { display: none; padding: 1rem; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius); font-family: -apple-system, sans-serif; font-size: 14px; color: #15803d; }
+
+    /* Footer */
+    footer { background: var(--earth); color: rgba(255,255,255,0.5); padding: 3rem 2rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: end; }
+    .footer-name { font-size: 1.25rem; color: rgba(255,255,255,0.85); margin-bottom: 0.5rem; }
+    .footer-sub { font-family: -apple-system, sans-serif; font-size: 12px; letter-spacing: 0.06em; }
+    .footer-sub a { color: inherit; opacity: 0.8; }
+    .footer-links { text-align: right; font-family: -apple-system, sans-serif; font-size: 12px; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; margin-left: 1.25rem; }
+    .footer-links a:hover { color: var(--terra-light); }
+    .footer-copy { font-family: -apple-system, sans-serif; font-size: 11px; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; grid-column: span 2; }
+
+    [data-lang="es"] { display: none; }
+    body.es [data-lang="es"] { display: block; }
+    body.es [data-lang="en"] { display: none; }
+    body.es [data-lang-inline="es"] { display: inline; }
+    body.es [data-lang-inline="en"] { display: none; }
+    [data-lang-inline="es"] { display: none; }
+
+    @media (max-width: 900px) {
+      .services-grid, .serve-grid, .how-grid { grid-template-columns: 1fr; }
+      .contact-grid, .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      section { padding: 3.5rem 1.25rem; }
+      .footer-links { text-align: left; }
+      .footer-links a { margin-left: 0; margin-right: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-name">Solar<span>a</span></div>
+  <div class="nav-links">
+    <a href="#services" data-lang-inline="en">Services</a>
+    <a href="#services" data-lang-inline="es">Servicios</a>
+    <a href="#how-it-works" data-lang-inline="en">How It Works</a>
+    <a href="#how-it-works" data-lang-inline="es">Cómo Funciona</a>
+    <a href="#contact" data-lang-inline="en">Contact</a>
+    <a href="#contact" data-lang-inline="es">Contacto</a>
+    <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">ES</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span data-lang-inline="en">Project Management · AI Implementation · Cross-Border</span>
+      <span data-lang-inline="es">Gestión de Proyectos · Implementación de IA · Transfronterizo</span>
+    </div>
+    <h1 class="hero-title" data-lang="en">I help businesses stop losing and <em>start winning.</em></h1>
+    <h1 class="hero-title" data-lang="es">Ayudo a negocios a dejar de perder y <em>empezar a ganar.</em></h1>
+    <p class="hero-sub" data-lang="en">Project management, AI implementation, and operational consulting — for service businesses that are busy but not growing the way they should be.</p>
+    <p class="hero-sub" data-lang="es">Gestión de proyectos, implementación de IA y consultoría operacional — para negocios de servicio que están ocupados pero no crecen como deberían.</p>
+    <div>
+      <a href="#contact" class="btn-primary" data-lang-inline="en">Start a conversation</a>
+      <a href="#contact" class="btn-primary" data-lang-inline="es" style="display:none;">Iniciar conversación</a>
+      <a href="#how-it-works" class="btn-outline" data-lang-inline="en">How it works</a>
+      <a href="#how-it-works" class="btn-outline" data-lang-inline="es" style="display:none;">Cómo funciona</a>
+    </div>
+  </div>
+</section>
+
+<div class="h-rule-full"></div>
+
+<!-- Services -->
+<section class="services" id="services">
+  <div class="container section-center">
+    <div class="section-label" data-lang="en">What I do</div>
+    <div class="section-label" data-lang="es">Lo que hago</div>
+    <h2 class="section-title" data-lang="en">Three ways I can help your business.</h2>
+    <h2 class="section-title" data-lang="es">Tres formas en que puedo ayudar a tu negocio.</h2>
+
+    <div class="services-grid" style="text-align:left;">
+      <div class="service-card">
+        <div class="service-number" data-lang="en">01 — The Hand</div>
+        <div class="service-number" data-lang="es">01 — La Mano</div>
+        <h3 class="service-title" data-lang="en">Project Management</h3>
+        <h3 class="service-title" data-lang="es">Gestión de Proyectos</h3>
+        <p class="service-body" data-lang="en">I bring structure to chaos. If your business is always busy but never seems to get ahead, you probably don't have a lead problem — you have an operations problem.</p>
+        <p class="service-body" data-lang="es">Traigo estructura al caos. Si tu negocio siempre está ocupado pero nunca parece avanzar, probablemente no tienes un problema de leads — tienes un problema de operaciones.</p>
+        <ul class="service-list" data-lang="en">
+          <li>Operational audit and gap analysis</li>
+          <li>Workflow design and documentation</li>
+          <li>Team communication systems</li>
+          <li>Schedule and delivery management</li>
+        </ul>
+        <ul class="service-list" data-lang="es">
+          <li>Auditoría operacional y análisis de brechas</li>
+          <li>Diseño y documentación de flujos de trabajo</li>
+          <li>Sistemas de comunicación de equipo</li>
+          <li>Gestión de cronograma y entrega</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-number" data-lang="en">02 — The Hammer</div>
+        <div class="service-number" data-lang="es">02 — El Martillo</div>
+        <h3 class="service-title" data-lang="en">AI Implementation</h3>
+        <h3 class="service-title" data-lang="es">Implementación de IA</h3>
+        <p class="service-body" data-lang="en">You don't need to understand AI. You need someone who does, who also understands your business. I find where AI saves you time and money — then make it happen.</p>
+        <p class="service-body" data-lang="es">No necesitas entender la IA. Necesitas a alguien que sí la entienda y que también entienda tu negocio. Encuentro dónde la IA te ahorra tiempo y dinero — y luego lo hago realidad.</p>
+        <ul class="service-list" data-lang="en">
+          <li>Speed-to-lead systems (no missed calls)</li>
+          <li>Automated follow-up sequences</li>
+          <li>Document processing automation</li>
+          <li>AI tools audit and roadmap</li>
+        </ul>
+        <ul class="service-list" data-lang="es">
+          <li>Sistemas de respuesta rápida (sin llamadas perdidas)</li>
+          <li>Secuencias de seguimiento automatizadas</li>
+          <li>Automatización de procesamiento de documentos</li>
+          <li>Auditoría de herramientas de IA y hoja de ruta</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-number" data-lang="en">03 — The Nail</div>
+        <div class="service-number" data-lang="es">03 — El Clavo</div>
+        <h3 class="service-title" data-lang="en">Emergency Services & Real Estate</h3>
+        <h3 class="service-title" data-lang="es">Servicios de Emergencia y Bienes Raíces</h3>
+        <p class="service-body" data-lang="en">I know these industries from the inside. I've worked them. I know where the money leaks, where the leads die, and what a broken intake process costs you every day.</p>
+        <p class="service-body" data-lang="es">Conozco estas industrias desde adentro. Las he trabajado. Sé dónde se pierde el dinero, dónde mueren los leads y cuánto le cuesta diariamente un proceso de captación roto.</p>
+        <ul class="service-list" data-lang="en">
+          <li>Restoration & water damage operations</li>
+          <li>Plumbing & HVAC workflow systems</li>
+          <li>Real estate agent lead response</li>
+          <li>Property management operations</li>
+        </ul>
+        <ul class="service-list" data-lang="es">
+          <li>Operaciones de restauración y daños por agua</li>
+          <li>Sistemas de flujo para plomería y HVAC</li>
+          <li>Respuesta a leads para agentes de bienes raíces</li>
+          <li>Operaciones de administración de propiedades</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Who I serve -->
+<section class="serve">
+  <div class="container section-center">
+    <div class="section-label" data-lang="en">Who I work with</div>
+    <div class="section-label" data-lang="es">Con quién trabajo</div>
+    <h2 class="section-title" data-lang="en">Built for the businesses that keep everything running.</h2>
+    <h2 class="section-title" data-lang="es">Construido para los negocios que mantienen todo funcionando.</h2>
+
+    <div class="serve-grid" style="text-align:left;">
+      <div class="serve-item">
+        <h3 class="serve-item-title" data-lang="en">Restoration & Remediation</h3>
+        <h3 class="serve-item-title" data-lang="es">Restauración y Remediación</h3>
+        <p class="serve-item-body" data-lang="en">Water damage, mold, fire restoration. Emergency response businesses that can't afford to miss a call or lose a lead to slow response time.</p>
+        <p class="serve-item-body" data-lang="es">Daños por agua, moho, restauración por incendio. Negocios de respuesta de emergencia que no pueden permitirse perder una llamada o un lead por respuesta lenta.</p>
+      </div>
+      <div class="serve-item">
+        <h3 class="serve-item-title" data-lang="en">Plumbing & HVAC</h3>
+        <h3 class="serve-item-title" data-lang="es">Plomería y HVAC</h3>
+        <p class="serve-item-body" data-lang="en">Service businesses where every missed call is a missed job. I help them respond faster, document better, and stop losing work to competitors who just pick up the phone.</p>
+        <p class="serve-item-body" data-lang="es">Negocios de servicio donde cada llamada perdida es un trabajo perdido. Los ayudo a responder más rápido, documentar mejor y dejar de perder trabajo ante competidores que simplemente contestan el teléfono.</p>
+      </div>
+      <div class="serve-item">
+        <h3 class="serve-item-title" data-lang="en">Real Estate & Property Management</h3>
+        <h3 class="serve-item-title" data-lang="es">Bienes Raíces y Administración de Propiedades</h3>
+        <p class="serve-item-body" data-lang="en">Brokers, agents, and property managers who need systems to follow up faster, reactivate their database, and close more from the leads they already have.</p>
+        <p class="serve-item-body" data-lang="es">Corredores, agentes y administradores de propiedades que necesitan sistemas para dar seguimiento más rápido, reactivar su base de datos y cerrar más con los leads que ya tienen.</p>
+      </div>
+      <div class="serve-item">
+        <h3 class="serve-item-title" data-lang="en">US–Mexico Cross-Border Business</h3>
+        <h3 class="serve-item-title" data-lang="es">Negocios Transfronterizos EE.UU.–México</h3>
+        <p class="serve-item-body" data-lang="en">Companies operating in both markets who need someone who truly speaks both languages, understands both cultures, and has lived in both worlds.</p>
+        <p class="serve-item-body" data-lang="es">Empresas que operan en ambos mercados y necesitan a alguien que realmente hable ambos idiomas, entienda ambas culturas y haya vivido en ambos mundos.</p>
+      </div>
+    </div>
+
+    <p class="serve-bridge" data-lang="en">"You don't have a lead problem. You have a response problem. And I can fix it."</p>
+    <p class="serve-bridge" data-lang="es">"No tienes un problema de leads. Tienes un problema de respuesta. Y yo puedo arreglarlo."</p>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="how" id="how-it-works">
+  <div class="container section-center">
+    <div class="section-label" data-lang="en">How it works</div>
+    <div class="section-label" data-lang="es">Cómo funciona</div>
+    <h2 class="section-title" data-lang="en">No pitch. No pressure. Just an honest look first.</h2>
+    <h2 class="section-title" data-lang="es">Sin discurso de venta. Sin presión. Primero, una mirada honesta.</h2>
+
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-number">01</div>
+        <h3 class="how-title" data-lang="en">Free audit</h3>
+        <h3 class="how-title" data-lang="es">Auditoría gratuita</h3>
+        <p class="how-body" data-lang="en">A real, no-cost look at where your business is losing time, leads, or money — before anything is proposed.</p>
+        <p class="how-body" data-lang="es">Una mirada real y sin costo a dónde tu negocio pierde tiempo, leads o dinero — antes de proponer nada.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-number">02</div>
+        <h3 class="how-title" data-lang="en">Tailored plan</h3>
+        <h3 class="how-title" data-lang="es">Plan a medida</h3>
+        <p class="how-body" data-lang="en">If there's a fit, I put together a specific plan — priced around the value it creates, not a generic package.</p>
+        <p class="how-body" data-lang="es">Si hay compatibilidad, armo un plan específico — con precio basado en el valor que crea, no un paquete genérico.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-number">03</div>
+        <h3 class="how-title" data-lang="en">Real implementation</h3>
+        <h3 class="how-title" data-lang="es">Implementación real</h3>
+        <p class="how-body" data-lang="en">I do the work alongside your team until the fix is actually running — not just recommended on paper.</p>
+        <p class="how-body" data-lang="es">Hago el trabajo junto a tu equipo hasta que la solución realmente funcione — no solo quede recomendada en papel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Credibility -->
+<section class="credibility">
+  <div class="container credibility-inner">
+    <div class="section-label" data-lang="en">Who's behind Solara</div>
+    <div class="section-label" data-lang="es">Quién está detrás de Solara</div>
+    <p class="credibility-body" data-lang="en">US Air Force veteran. PMP-certified project manager. Bilingual, cross-border, and hands-on in construction and emergency services for over a decade.</p>
+    <p class="credibility-body" data-lang="es">Veterano de la Fuerza Aérea de EE.UU. Gerente de proyectos certificado PMP. Bilingüe, transfronterizo, y con más de una década de experiencia práctica en construcción y servicios de emergencia.</p>
+    <div class="credibility-link">
+      <a href="https://juansoltero.com" data-lang-inline="en">Read Juan's full story →</a>
+      <a href="https://juansoltero.com" data-lang-inline="es">Lee la historia completa de Juan →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section class="results">
+  <div class="container results-inner">
+    <div class="section-label" data-lang="en">Results</div>
+    <div class="section-label" data-lang="es">Resultados</div>
+    <p class="results-body" data-lang="en">Solara is newly launched — case studies are coming soon as engagements complete. In the meantime, the free audit costs you nothing but a conversation.</p>
+    <p class="results-body" data-lang="es">Solara está recién lanzada — los casos de éxito llegarán pronto conforme se completen los proyectos. Mientras tanto, la auditoría gratuita no te cuesta más que una conversación.</p>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label" data-lang="en">Get in touch</div>
+        <div class="section-label" data-lang="es">Contáctame</div>
+        <h2 class="section-title" data-lang="en">Let's have a conversation.</h2>
+        <h2 class="section-title" data-lang="es">Tengamos una conversación.</h2>
+        <div class="h-rule" style="margin-left:0;"></div>
+        <p class="contact-intro" data-lang="en">If your business has a problem you haven't been able to fix — slow response times, missed leads, operational chaos, or you just know something isn't working — reach out. The first conversation is always free.</p>
+        <p class="contact-intro" data-lang="es">Si tu negocio tiene un problema que no has podido resolver — tiempos de respuesta lentos, leads perdidos, caos operacional, o simplemente sabes que algo no está funcionando — comunícate. La primera conversación siempre es gratuita.</p>
+        <div class="contact-detail">
+          <a href="mailto:juanboeckh@gmail.com">juanboeckh@gmail.com</a>
+        </div>
+        <div class="contact-detail" style="margin-top:0.5rem; font-size:12px; color:var(--text-light);">
+          Las Vegas, NV · Los Angeles, CA · San Miguel de Allende, Guanajuato · Sierra de Quila, Jalisco
+        </div>
+      </div>
+
+      <div>
+        <form id="contact-form">
+          <div class="form-group">
+            <label class="form-label" data-lang="en">Your name</label>
+            <label class="form-label" data-lang="es">Tu nombre</label>
+            <input class="form-input" id="c-name" type="text" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-lang="en">Your email</label>
+            <label class="form-label" data-lang="es">Tu correo</label>
+            <input class="form-input" id="c-email" type="email" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" data-lang="en">What's going on in your business?</label>
+            <label class="form-label" data-lang="es">¿Qué está pasando en tu negocio?</label>
+            <textarea class="form-textarea" id="c-message" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            <span data-lang-inline="en">Send message</span>
+            <span data-lang-inline="es">Enviar mensaje</span>
+          </button>
+          <div class="form-success" id="form-success">
+            <span data-lang-inline="en">Message received. I'll be in touch soon.</span>
+            <span data-lang-inline="es">Mensaje recibido. Me pondré en contacto pronto.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Solara</div>
+      <div class="footer-sub sans">
+        Project Management · AI Implementation · Cross-Border<br>
+        juanboeckh@gmail.com · <a href="https://juansoltero.com" target="_blank" rel="noopener noreferrer">About Juan</a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="#services" data-lang-inline="en">Services</a>
+      <a href="#services" data-lang-inline="es">Servicios</a>
+      <a href="#how-it-works" data-lang-inline="en">How It Works</a>
+      <a href="#how-it-works" data-lang-inline="es">Cómo Funciona</a>
+      <a href="#contact" data-lang-inline="en">Contact</a>
+      <a href="#contact" data-lang-inline="es">Contacto</a>
+    </div>
+    <div class="footer-copy sans">
+      © 2026 Solara. All rights reserved. · Las Vegas, NV · Los Angeles, CA · San Miguel de Allende, Guanajuato · Sierra de Quila, Jalisco
+    </div>
+  </div>
+</footer>
+
+<script>
+  let currentLang = 'en';
+
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'es' : 'en';
+    document.body.classList.toggle('es', currentLang === 'es');
+    document.getElementById('lang-btn').textContent = currentLang === 'en' ? 'ES' : 'EN';
+    document.documentElement.lang = currentLang;
+  }
+
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = {
+      name: document.getElementById('c-name').value,
+      email: document.getElementById('c-email').value,
+      message: document.getElementById('c-message').value,
+      lang: currentLang
+    };
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        document.getElementById('contact-form').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      }
+    } catch(err) {
+      alert('Message could not be sent. Please email directly.');
+    }
+  });
+</script>
+
+</body>
+</html>
