@@ -1,8 +1,8 @@
 # Project: Solara Business Site — solarassoc.com
 
-**Status:** Built, not yet deployed
+**Status:** Live
 **Location:** `/Users/jlboeckh/MD/projects/solarassoc-website/`
-**Live URL:** TBD (solarassoc.com — domain currently mid-setup, see Active Threads in memory.md)
+**Live URL:** https://solarassoc.com (Railway: solarassoc-website-production.up.railway.app, GitHub: boeckh-gif/solarassoc-website)
 **Local preview:** http://localhost:3002
 **Domain registrar:** Cloudflare
 
@@ -26,7 +26,5 @@ node server.js
 - Contact — the lead-capture form (moved here from juansoltero.com)
 
 ## To Do
-- Deploy once solarassoc.com domain/Google Workspace setup is resolved (see memory.md Active Threads)
-- Set up GitHub repo + Railway hosting (mirror juansoltero.com's setup)
-- Connect custom email once Workspace is live
+- **Contact form doesn't actually notify anyone (found 2026-07-12).** `/api/contact` only writes to `data/contacts.json` on the server — no email is sent, and Railway's filesystem isn't guaranteed to persist that file across redeploys/restarts. Anyone submitting the live form right now has no guarantee Juan ever sees it. Needs wiring to send an email via `juan@solarassoc.com` (nodemailer + Google Workspace SMTP, credentials in Railway env vars, not hardcoded) — flagged to Juan, not yet fixed.
 - Add real case study once Angel Bravo (or another engagement) concludes — do not reference specific client details without Juan's sign-off, per client confidentiality rules
