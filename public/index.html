@@ -90,6 +90,35 @@
     .nav-cta { font-family: -apple-system, sans-serif; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 18px; background: var(--terra); color: white !important; text-decoration: none; border-radius: 20px; transition: background 0.2s; }
     .nav-cta:hover { background: var(--terra-dark); color: white !important; }
 
+    .nav-toggle {
+      display: none; flex-shrink: 0;
+      background: none; border: none; cursor: pointer;
+      width: 32px; height: 32px; padding: 4px;
+      flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+    }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--earth); border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    nav.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    nav.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+    nav.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 720px) {
+      nav { padding: 0 1rem; }
+      .nav-name { font-size: 15px; white-space: nowrap; }
+      .lang-toggle-group { padding: 2px; }
+      .lang-opt { padding: 4px 10px; font-size: 11px; }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        position: fixed; top: 64px; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--cream); border-bottom: 1px solid var(--border);
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .nav-links a { padding: 14px 1.5rem; text-align: center; border-top: 1px solid var(--border); }
+      .nav-links a.nav-cta { margin: 12px 1.5rem; border-top: none; }
+      nav.nav-open .nav-links { max-height: 480px; overflow-y: auto; }
+    }
+
     /* Hero */
     .hero { min-height: 90vh; display: flex; align-items: center; padding-top: 64px; background: radial-gradient(ellipse at 50% 0%, var(--cream-dark) 0%, var(--cream) 60%); }
     .hero-content { max-width: 780px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
@@ -232,7 +261,7 @@
     <button class="lang-opt" data-lang-btn="en" onclick="setLang('en')">EN</button>
     <button class="lang-opt" data-lang-btn="es" onclick="setLang('es')">ES</button>
   </div>
-  <div class="nav-links">
+  <div class="nav-links" id="navLinks">
     <a href="#services" data-lang-inline="en">Services</a>
     <a href="#services" data-lang-inline="es">Servicios</a>
     <a href="#how-it-works" data-lang-inline="en">How It Works</a>
@@ -242,6 +271,9 @@
     <a href="https://calendly.com/juanboeckh/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-lang-inline="en">Book a call</a>
     <a href="https://calendly.com/juanboeckh/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-lang-inline="es">Reservar llamada</a>
   </div>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- Hero -->
@@ -584,6 +616,25 @@
       setLang(browserLang.indexOf('es') === 0 ? 'es' : 'en');
     }
   })();
+
+  // Mobile nav toggle
+  function toggleNav() {
+    var nav = document.querySelector('nav');
+    var open = nav.classList.toggle('nav-open');
+    document.querySelector('.nav-toggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  document.querySelectorAll('.nav-links a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      document.querySelector('nav').classList.remove('nav-open');
+      document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+    });
+  });
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 720) {
+      document.querySelector('nav').classList.remove('nav-open');
+      document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+    }
+  });
 
   document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
