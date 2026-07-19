@@ -3,8 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solara — AI Consulting for Service Businesses</title>
-  <meta name="description" content="Solara — AI consulting and implementation for service businesses ready to run better and grow bigger, backed by 13+ years of hands-on project management. Restoration, plumbing, HVAC, real estate.">
+  <title>Solara | Fractional Operations & Stability Architect</title>
+  <meta name="description" content="Solara builds stability for growing businesses. Fractional Operations Architect specializing in AI-driven systems and scalable growth.">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://solarassoc.com">
+  <meta property="og:title" content="Solara | Fractional Operations & Stability Architect">
+  <meta property="og:description" content="Solara builds stability for growing businesses. Fractional Operations Architect specializing in AI-driven systems and scalable growth.">
+  <meta property="og:image" content="https://solarassoc.com/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Solara | Fractional Operations & Stability Architect">
+  <meta name="twitter:description" content="Solara builds stability for growing businesses. Fractional Operations Architect specializing in AI-driven systems and scalable growth.">
+  <meta name="twitter:image" content="https://solarassoc.com/images/og-image.png">
 
   <script type="application/ld+json">
   {
@@ -12,7 +31,7 @@
     "@type": "ProfessionalService",
     "name": "Solara",
     "founder": "Juan Leopoldo Boeckh Soltero",
-    "description": "AI consulting and implementation for service businesses — restoration, plumbing, HVAC, real estate, property management — backed by 13+ years of hands-on project management.",
+    "description": "Solara builds stability for growing businesses. Fractional Operations Architect specializing in AI-driven systems and scalable growth — restoration, plumbing, HVAC, real estate, property management.",
     "areaServed": ["US", "MX"],
     "url": "https://solarassoc.com",
     "email": "juan@solarassoc.com",
@@ -64,11 +83,15 @@
     .nav-links { display: flex; gap: 2rem; align-items: center; }
     .nav-links a { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13px; color: var(--text-mid); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: var(--terra); }
-    .lang-toggle { font-family: -apple-system, sans-serif; font-size: 12px; padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; background: transparent; color: var(--text-mid); cursor: pointer; letter-spacing: 0.06em; transition: all 0.2s; }
-    .lang-toggle:hover { background: var(--terra); color: white; border-color: var(--terra); }
+    .lang-toggle-group { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--border); border-radius: 20px; background: var(--cream-dark); }
+    .lang-opt { font-family: -apple-system, sans-serif; font-size: 12px; font-weight: 600; padding: 5px 14px; border: none; border-radius: 16px; background: transparent; color: var(--text-mid); cursor: pointer; letter-spacing: 0.06em; transition: all 0.2s; }
+    .lang-opt.active { background: var(--terra); color: white; }
+    .lang-opt:hover:not(.active) { color: var(--terra); }
+    .nav-cta { font-family: -apple-system, sans-serif; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding: 9px 18px; background: var(--terra); color: white !important; text-decoration: none; border-radius: 20px; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--terra-dark); color: white !important; }
 
     /* Hero */
-    .hero { min-height: 90vh; display: flex; align-items: center; padding-top: 64px; background: var(--cream); }
+    .hero { min-height: 90vh; display: flex; align-items: center; padding-top: 64px; background: radial-gradient(ellipse at 50% 0%, var(--cream-dark) 0%, var(--cream) 60%); }
     .hero-content { max-width: 780px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
     .hero-eyebrow { font-family: -apple-system, sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terra); margin-bottom: 1.25rem; }
     .hero-title { font-size: clamp(2rem, 5vw, 3.5rem); color: var(--earth); margin-bottom: 1.5rem; line-height: 1.15; }
@@ -104,7 +127,8 @@
     /* Services */
     .services { background: var(--white); }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
-    .service-card { background: var(--cream); border: 1px solid var(--border); padding: 2rem; border-top: 3px solid var(--terra); }
+    .service-card { background: var(--cream); border: 1px solid var(--border); padding: 2rem; border-top: 3px solid var(--terra); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(61,43,31,0.12); }
     .service-art { width: 100%; height: 180px; object-fit: cover; border-radius: 4px; margin-bottom: 1.25rem; display: block; }
     .service-number { font-family: -apple-system, sans-serif; font-size: 11px; color: var(--terra); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
     .service-title { font-size: 1.25rem; color: var(--earth); margin-bottom: 1rem; }
@@ -112,16 +136,19 @@
     .service-list { margin-top: 1rem; padding-left: 0; list-style: none; }
     .service-list li { font-family: -apple-system, sans-serif; font-size: 13px; color: var(--text-mid); padding: 5px 0; border-bottom: 1px solid var(--cream-dark); display: flex; align-items: flex-start; gap: 8px; }
     .service-list li::before { content: '→'; color: var(--terra); flex-shrink: 0; }
+    .services-closer { margin: 3rem auto 0; padding-top: 3rem; border-top: 1px solid var(--border); font-size: 1.125rem; color: var(--text-mid); font-style: italic; text-align: center; max-width: 720px; }
 
     /* Who I serve */
     .serve { background: var(--earth); color: var(--cream); }
     .serve .section-label { color: var(--terra-light); }
     .serve .section-title { color: var(--white); }
     .serve-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
-    .serve-item { border: 1px solid rgba(255,255,255,0.12); padding: 1.5rem; }
+    .serve-item { border: 1px solid rgba(255,255,255,0.12); padding: 1.5rem; transition: border-color 0.25s ease, background 0.25s ease; }
+    .serve-item:hover { border-color: rgba(226,169,132,0.45); background: rgba(255,255,255,0.03); }
     .serve-item-title { font-size: 1.0625rem; color: var(--terra-light); margin-bottom: 0.5rem; }
     .serve-item-body { font-family: -apple-system, sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
-    .serve-bridge { margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.12); font-size: 1.125rem; color: rgba(255,255,255,0.8); font-style: italic; text-align: center; }
+    .serve-note { font-family: -apple-system, sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; font-style: italic; text-align: center; max-width: 640px; margin: 1.75rem auto 0; }
+    .serve-bridge { margin: 3rem auto 0; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.12); font-size: 1.125rem; color: rgba(255,255,255,0.8); font-style: italic; text-align: center; max-width: 720px; }
 
     /* How it works */
     .how { background: var(--cream-dark); }
@@ -150,7 +177,8 @@
     /* Results */
     .results { background: var(--cream-dark); text-align: center; }
     .results-inner { max-width: 640px; margin: 0 auto; }
-    .results-body { font-size: 1.0625rem; color: var(--text-mid); line-height: 1.8; }
+    .results-body { font-size: 1.0625rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 1.25rem; }
+    .results-body:last-child { margin-bottom: 0; }
 
     /* Contact */
     .contact { background: var(--white); }
@@ -200,6 +228,10 @@
 <!-- Nav -->
 <nav>
   <div class="nav-name">Solar<span>a</span></div>
+  <div class="lang-toggle-group" role="group" aria-label="Language / Idioma">
+    <button class="lang-opt" data-lang-btn="en" onclick="setLang('en')">EN</button>
+    <button class="lang-opt" data-lang-btn="es" onclick="setLang('es')">ES</button>
+  </div>
   <div class="nav-links">
     <a href="#services" data-lang-inline="en">Services</a>
     <a href="#services" data-lang-inline="es">Servicios</a>
@@ -207,7 +239,8 @@
     <a href="#how-it-works" data-lang-inline="es">Cómo Funciona</a>
     <a href="#contact" data-lang-inline="en">Contact</a>
     <a href="#contact" data-lang-inline="es">Contacto</a>
-    <button class="lang-toggle" onclick="toggleLang()" id="lang-btn">ES</button>
+    <a href="https://calendly.com/juanboeckh/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-lang-inline="en">Book a call</a>
+    <a href="https://calendly.com/juanboeckh/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-lang-inline="es">Reservar llamada</a>
   </div>
 </nav>
 
@@ -215,13 +248,13 @@
 <section class="hero">
   <div class="hero-content">
     <div class="hero-eyebrow">
-      <span data-lang-inline="en">AI Consulting · Project Management · Cross-Border</span>
-      <span data-lang-inline="es">Consultoría de IA · Gestión de Proyectos · Transfronterizo</span>
+      <span data-lang-inline="en">Fractional Operations · AI-Driven Systems · Scalable Growth</span>
+      <span data-lang-inline="es">Operaciones Fraccionadas · Sistemas Impulsados por IA · Crecimiento Escalable</span>
     </div>
-    <h1 class="hero-title" data-lang="en">Good businesses, running better. <em>Busy businesses, finally growing.</em></h1>
-    <h1 class="hero-title" data-lang="es">Buenos negocios, funcionando mejor. <em>Negocios ocupados, por fin creciendo.</em></h1>
-    <p class="hero-sub" data-lang="en">AI consulting and hands-on implementation, backed by 13+ years of project management — for service businesses ready to run better and grow bigger.</p>
-    <p class="hero-sub" data-lang="es">Consultoría de IA e implementación práctica, respaldada por más de 13 años de gestión de proyectos — para negocios de servicio listos para funcionar mejor y crecer más.</p>
+    <h1 class="hero-title" data-lang="en">Stop managing chaos. <em>Start building a foundation.</em></h1>
+    <h1 class="hero-title" data-lang="es">Deja de gestionar el caos. <em>Empieza a construir una base sólida.</em></h1>
+    <p class="hero-sub" data-lang="en">I partner with business owners as a Fractional Operations Architect. By combining structured project management frameworks with custom AI automation, I eliminate your operational friction so your business can scale predictably without breaking.</p>
+    <p class="hero-sub" data-lang="es">Me asocio con dueños de negocios como Arquitecto de Operaciones Fraccionado. Al combinar marcos estructurados de gestión de proyectos con automatización de IA a la medida, elimino la fricción operativa de tu negocio para que pueda escalar de forma predecible sin colapsar.</p>
     <div>
       <a href="#contact" class="btn-primary" data-lang-inline="en">Start a conversation</a>
       <a href="#contact" class="btn-primary" data-lang-inline="es" style="display:none;">Iniciar conversación</a>
@@ -238,8 +271,8 @@
   <div class="container section-center">
     <div class="section-label" data-lang="en">What I do</div>
     <div class="section-label" data-lang="es">Lo que hago</div>
-    <h2 class="section-title" data-lang="en">Three ways I can help your business.</h2>
-    <h2 class="section-title" data-lang="es">Tres formas en que puedo ayudar a tu negocio.</h2>
+    <h2 class="section-title" data-lang="en">Architectural solutions</h2>
+    <h2 class="section-title" data-lang="es">Soluciones arquitectónicas</h2>
 
     <div class="services-grid" style="text-align:left;">
       <div class="service-card">
@@ -248,8 +281,8 @@
         <div class="service-number" data-lang="es">01 — El Martillo</div>
         <h3 class="service-title" data-lang="en">AI Implementation</h3>
         <h3 class="service-title" data-lang="es">Implementación de IA</h3>
-        <p class="service-body" data-lang="en">You don't need to understand AI. You need someone who does, who also understands your business. I find where AI saves you time and money — then make it happen.</p>
-        <p class="service-body" data-lang="es">No necesitas entender la IA. Necesitas a alguien que sí la entienda y que también entienda tu negocio. Encuentro dónde la IA te ahorra tiempo y dinero — y luego lo hago realidad.</p>
+        <p class="service-body" data-lang="en">The precision tool. I implement AI to strike the exact point of friction in your workflow, immediately increasing your operational output.</p>
+        <p class="service-body" data-lang="es">La herramienta de precisión. Implemento IA para atacar el punto exacto de fricción en tu flujo de trabajo, aumentando de inmediato tu rendimiento operativo.</p>
         <ul class="service-list" data-lang="en">
           <li>Speed-to-lead systems (no missed calls)</li>
           <li>Automated follow-up sequences</li>
@@ -270,8 +303,8 @@
         <div class="service-number" data-lang="es">02 — La Mano</div>
         <h3 class="service-title" data-lang="en">Project Management</h3>
         <h3 class="service-title" data-lang="es">Gestión de Proyectos</h3>
-        <p class="service-body" data-lang="en">This is why the AI work actually sticks. 13+ years of hands-on project management means I bring real structure to chaos — not just a tool, but the discipline to make it stick.</p>
-        <p class="service-body" data-lang="es">Por esto el trabajo de IA realmente funciona. Más de 13 años de gestión de proyectos práctica significan que traigo estructura real al caos — no solo una herramienta, sino la disciplina para que perdure.</p>
+        <p class="service-body" data-lang="en">The steady guidance. I manage the human element of your projects, ensuring accountability, clear communication, and professional discipline from kickoff to closeout.</p>
+        <p class="service-body" data-lang="es">La guía firme. Gestiono el elemento humano de tus proyectos, garantizando responsabilidad, comunicación clara y disciplina profesional desde el arranque hasta el cierre.</p>
         <ul class="service-list" data-lang="en">
           <li>Operational audit and gap analysis</li>
           <li>Workflow design and documentation</li>
@@ -290,10 +323,10 @@
         <img src="/images/the-nail.png" alt="The Nail — hand-drawn illustration of a nail and rope tied to a wooden post" class="service-art">
         <div class="service-number" data-lang="en">03 — The Nail</div>
         <div class="service-number" data-lang="es">03 — El Clavo</div>
-        <h3 class="service-title" data-lang="en">Emergency Services & Real Estate</h3>
-        <h3 class="service-title" data-lang="es">Servicios de Emergencia y Bienes Raíces</h3>
-        <p class="service-body" data-lang="en">I know these industries from the inside. I've worked them. I know where the money leaks, where the leads die, and what a broken intake process costs you every day.</p>
-        <p class="service-body" data-lang="es">Conozco estas industrias desde adentro. Las he trabajado. Sé dónde se pierde el dinero, dónde mueren los leads y cuánto le cuesta diariamente un proceso de captación roto.</p>
+        <h3 class="service-title" data-lang="en">Emergency & Real Estate Ops</h3>
+        <h3 class="service-title" data-lang="es">Emergencias y Bienes Raíces</h3>
+        <p class="service-body" data-lang="en">The anchor. In high-stakes, time-sensitive environments, I provide the "binding" force that holds your margins and timelines together, no matter the pressure.</p>
+        <p class="service-body" data-lang="es">El anclaje. En entornos de alta presión y plazos críticos, aporto la fuerza cohesiva que mantiene unidos tus márgenes y tiempos de entrega, sin importar la presión.</p>
         <ul class="service-list" data-lang="en">
           <li>Restoration, water damage & roof repair operations</li>
           <li>Plumbing & HVAC workflow systems</li>
@@ -308,46 +341,50 @@
         </ul>
       </div>
     </div>
+
+    <p class="services-closer" data-lang="en">Designed for the businesses that build the world—and need the stability to keep growing.</p>
+    <p class="services-closer" data-lang="es">Diseñado para los negocios que construyen el mundo — y necesitan la estabilidad para seguir creciendo.</p>
   </div>
 </section>
 
 <!-- Who I serve -->
 <section class="serve">
   <div class="container section-center">
-    <div class="section-label" data-lang="en">Who I work with</div>
-    <div class="section-label" data-lang="es">Con quién trabajo</div>
-    <h2 class="section-title" data-lang="en">Built for the businesses that keep everything running.</h2>
-    <h2 class="section-title" data-lang="es">Construido para los negocios que mantienen todo funcionando.</h2>
+    <div class="section-label" data-lang="en">Environments I Navigate</div>
+    <div class="section-label" data-lang="es">Entornos en los que Trabajo</div>
 
     <div class="serve-grid" style="text-align:left;">
       <div class="serve-item">
         <h3 class="serve-item-title" data-lang="en">Restoration & Remediation</h3>
         <h3 class="serve-item-title" data-lang="es">Restauración y Remediación</h3>
-        <p class="serve-item-body" data-lang="en">Water damage, mold, fire, and roof restoration — often insurance-driven work. Emergency response businesses that can't afford to miss a call or lose a lead to slow response time.</p>
-        <p class="serve-item-body" data-lang="es">Daños por agua, moho, incendio y restauración de techos — trabajo que suele venir de aseguradoras. Negocios de respuesta de emergencia que no pueden permitirse perder una llamada o un lead por respuesta lenta.</p>
+        <p class="serve-item-body" data-lang="en">Emergency-driven work requires a zero-latency workflow. I build the systems that connect your dispatch directly to your lead sources, automate the insurance documentation process, and ensure your team is on-site before the competition even picks up the phone.</p>
+        <p class="serve-item-body" data-lang="es">El trabajo de emergencia exige un flujo operativo sin demoras. Construyo los sistemas que conectan tu despacho directamente con tus fuentes de leads, automatizan el proceso de documentación con las aseguradoras y aseguran que tu equipo llegue al sitio antes de que la competencia siquiera conteste el teléfono.</p>
       </div>
       <div class="serve-item">
         <h3 class="serve-item-title" data-lang="en">Plumbing & HVAC</h3>
         <h3 class="serve-item-title" data-lang="es">Plomería y HVAC</h3>
-        <p class="serve-item-body" data-lang="en">Service businesses where every missed call is a missed job. I help them respond faster, document better, and stop losing work to competitors who just pick up the phone.</p>
-        <p class="serve-item-body" data-lang="es">Negocios de servicio donde cada llamada perdida es un trabajo perdido. Los ayudo a responder más rápido, documentar mejor y dejar de perder trabajo ante competidores que simplemente contestan el teléfono.</p>
+        <p class="serve-item-body" data-lang="en">In the service trades, a missed call is a direct loss to your bottom line. I install operational guardrails—from AI-powered scheduling to automated work-order handoffs—that guarantee every inquiry is tracked, documented, and successfully converted into a completed job.</p>
+        <p class="serve-item-body" data-lang="es">En los oficios de servicio, una llamada perdida es una pérdida directa para tu rentabilidad. Instalo mecanismos de control operativo — desde programación de citas impulsada por IA hasta la entrega automatizada de órdenes de trabajo — que garantizan que cada consulta sea rastreada, documentada y convertida en un trabajo completado.</p>
       </div>
       <div class="serve-item">
         <h3 class="serve-item-title" data-lang="en">Real Estate & Property Management</h3>
         <h3 class="serve-item-title" data-lang="es">Bienes Raíces y Administración de Propiedades</h3>
-        <p class="serve-item-body" data-lang="en">Brokers, agents, and property managers who need systems to follow up faster, reactivate their database, and close more from the leads they already have.</p>
-        <p class="serve-item-body" data-lang="es">Corredores, agentes y administradores de propiedades que necesitan sistemas para dar seguimiento más rápido, reactivar su base de datos y cerrar más con los leads que ya tienen.</p>
+        <p class="serve-item-body" data-lang="en">Most real estate businesses are sitting on a goldmine of dead leads. I design automated follow-up sequences and CRM architecture that reactivate your past database, ensuring your team is focused on high-value conversations rather than manual data entry.</p>
+        <p class="serve-item-body" data-lang="es">La mayoría de los negocios de bienes raíces tienen una mina de oro en leads inactivos. Diseño secuencias de seguimiento automatizadas y una arquitectura de CRM que reactivan tu base de datos pasada, para que tu equipo se enfoque en conversaciones de alto valor en lugar de captura manual de datos.</p>
       </div>
       <div class="serve-item">
         <h3 class="serve-item-title" data-lang="en">US–Mexico Cross-Border Business</h3>
         <h3 class="serve-item-title" data-lang="es">Negocios Transfronterizos EE.UU.–México</h3>
-        <p class="serve-item-body" data-lang="en">Companies operating in both markets who need someone who truly speaks both languages, understands both cultures, and has lived in both worlds.</p>
-        <p class="serve-item-body" data-lang="es">Empresas que operan en ambos mercados y necesitan a alguien que realmente hable ambos idiomas, entienda ambas culturas y haya vivido en ambos mundos.</p>
+        <p class="serve-item-body" data-lang="en">Scaling across borders is an operational, cultural, and logistical challenge. I provide the systemic discipline and dual-market fluency to bridge your operations between the U.S. and Mexico, ensuring seamless execution regardless of the geography.</p>
+        <p class="serve-item-body" data-lang="es">Escalar a través de fronteras es un reto operativo, cultural y logístico. Aporto la disciplina sistemática y la fluidez en ambos mercados para conectar tus operaciones entre EE.UU. y México, garantizando una ejecución impecable sin importar la geografía.</p>
       </div>
     </div>
 
-    <p class="serve-bridge" data-lang="en">"You don't need more leads. You need to win more of the work that's already out there."</p>
-    <p class="serve-bridge" data-lang="es">"No necesitas más leads. Necesitas ganar más del trabajo que ya está disponible."</p>
+    <p class="serve-bridge" data-lang="en">"You need a system that functions—where every process is deliberate, every workflow is automated, and your foundation is strong enough to scale without the chaos."</p>
+    <p class="serve-bridge" data-lang="es">"Necesitas un sistema que funcione; donde cada proceso sea deliberado, cada flujo de trabajo esté automatizado y tu base sea lo suficientemente sólida para escalar sin el caos."</p>
+
+    <p class="serve-note" data-lang="en">While my experience is deepest in high-stakes, operational-intensive environments like these, the core principles of a functional system remain the same regardless of industry. If your business is ready for structural stability, we should talk.</p>
+    <p class="serve-note" data-lang="es">Si bien mi experiencia es más profunda en entornos de alta exigencia e intensidad operativa como estos, los principios fundamentales de un sistema funcional son los mismos sin importar la industria. Si tu negocio está listo para la estabilidad estructural, hablemos.</p>
   </div>
 </section>
 
@@ -356,56 +393,56 @@
   <div class="container section-center">
     <div class="section-label" data-lang="en">How it works</div>
     <div class="section-label" data-lang="es">Cómo funciona</div>
-    <h2 class="section-title" data-lang="en">No pitch. No pressure. Just an honest look first.</h2>
-    <h2 class="section-title" data-lang="es">Sin discurso de venta. Sin presión. Primero, una mirada honesta.</h2>
+    <h2 class="section-title" data-lang="en">No sales cycle. Just a structural assessment.</h2>
+    <h2 class="section-title" data-lang="es">Sin ciclo de ventas. Solo una evaluación estructural.</h2>
 
     <div class="how-grid">
       <div class="how-step">
         <div class="how-number">01</div>
-        <h3 class="how-title" data-lang="en">Free audit</h3>
-        <h3 class="how-title" data-lang="es">Auditoría gratuita</h3>
-        <p class="how-body" data-lang="en">A real, no-cost look at where your business is losing time, leads, or money — before anything is proposed.</p>
-        <p class="how-body" data-lang="es">Una mirada real y sin costo a dónde tu negocio pierde tiempo, leads o dinero — antes de proponer nada.</p>
+        <h3 class="how-title" data-lang="en">The Stability Assessment</h3>
+        <h3 class="how-title" data-lang="es">La Evaluación de Estabilidad</h3>
+        <p class="how-body" data-lang="en">A comprehensive, no-cost review of your operations. I look at your current systems to identify where friction—in time, resources, or processes—is preventing you from scaling, before we discuss any solutions.</p>
+        <p class="how-body" data-lang="es">Una revisión integral y sin costo de tus operaciones. Analizo tus sistemas actuales para identificar dónde la fricción — en tiempo, recursos o procesos — te está impidiendo escalar, antes de hablar de cualquier solución.</p>
       </div>
       <div class="how-step">
         <div class="how-number">02</div>
-        <h3 class="how-title" data-lang="en">Tailored plan</h3>
-        <h3 class="how-title" data-lang="es">Plan a medida</h3>
-        <p class="how-body" data-lang="en">If there's a fit, I put together a specific plan — priced around the value it creates, not a generic package.</p>
-        <p class="how-body" data-lang="es">Si hay compatibilidad, armo un plan específico — con precio basado en el valor que crea, no un paquete genérico.</p>
+        <h3 class="how-title" data-lang="en">The Operational Blueprint</h3>
+        <h3 class="how-title" data-lang="es">El Plano Operativo</h3>
+        <p class="how-body" data-lang="en">If we identify a clear path to improvement, I design a tailored implementation plan. This is priced strictly on the value delivered to your business, not on generic packages or hourly retainers.</p>
+        <p class="how-body" data-lang="es">Si identificamos un camino claro de mejora, diseño un plan de implementación a medida. El precio se basa estrictamente en el valor que aporta a tu negocio, no en paquetes genéricos ni tarifas por hora.</p>
       </div>
       <div class="how-step">
         <div class="how-number">03</div>
-        <h3 class="how-title" data-lang="en">Real implementation</h3>
-        <h3 class="how-title" data-lang="es">Implementación real</h3>
-        <p class="how-body" data-lang="en">I do the work alongside your team until the fix is actually running — not just recommended on paper.</p>
-        <p class="how-body" data-lang="es">Hago el trabajo junto a tu equipo hasta que la solución realmente funcione — no solo quede recomendada en papel.</p>
+        <h3 class="how-title" data-lang="en">Field-Tested Implementation</h3>
+        <h3 class="how-title" data-lang="es">Implementación Probada en Campo</h3>
+        <p class="how-body" data-lang="en">I don't just provide recommendations on paper; I execute the build. I work alongside your team to install, test, and calibrate the new systems until they are fully functional and stable.</p>
+        <p class="how-body" data-lang="es">No me limito a entregar recomendaciones en papel; ejecuto la construcción. Trabajo junto a tu equipo para instalar, probar y calibrar los nuevos sistemas hasta que estén completamente funcionales y estables.</p>
       </div>
     </div>
 
     <div class="how-detail">
-      <h3 class="how-detail-title" data-lang="en">What's actually in the free audit</h3>
-      <h3 class="how-detail-title" data-lang="es">Qué incluye realmente la auditoría gratuita</h3>
+      <h3 class="how-detail-title" data-lang="en">What's in the Stability Assessment</h3>
+      <h3 class="how-detail-title" data-lang="es">Qué incluye la Evaluación de Estabilidad</h3>
       <ul class="service-list how-detail-list" data-lang="en">
-        <li><strong>What you actually want</strong> — a real conversation about where the business needs to be in 6-12 months, in your own words.</li>
-        <li><strong>Where time and money are really going</strong> — not "describe your process," a walk through a real, recent day.</li>
-        <li><strong>How the business actually runs</strong> — who does what, and where things get handed off.</li>
-        <li><strong>What's actually worth fixing</strong> — not everything broken needs new technology.</li>
-        <li><strong>Where AI genuinely helps — and where it doesn't</strong> — I'll say plainly when the answer is "you don't need AI for this."</li>
-        <li><strong>A plain list, sorted by what matters</strong> — every finding tied to a real number, not just a description.</li>
+        <li><strong>Your Vision, Defined</strong> — A candid conversation about where you need the business to be in 6–12 months, in your own words.</li>
+        <li><strong>A Look at the Real-World Flow</strong> — We bypass the "textbook process" and walk through a real, recent day to see where time and money are actually being consumed.</li>
+        <li><strong>Structural Hand-offs</strong> — We map out how the business currently runs: who is responsible for what, and where the critical hand-offs occur.</li>
+        <li><strong>Prioritizing the Foundation</strong> — Not everything that is "broken" needs a new system. We identify exactly which structural fixes will provide the most stability.</li>
+        <li><strong>AI: Reality vs. Hype</strong> — I will tell you plainly when AI is a solution and when it is a distraction. If you don't need it, I'll be the first to say so.</li>
+        <li><strong>The Actionable Roadmap</strong> — You receive a clear, prioritized list of findings tied to real business outcomes—not vague descriptions.</li>
       </ul>
       <ul class="service-list how-detail-list" data-lang="es">
-        <li><strong>Lo que realmente quieres</strong> — una conversación real sobre dónde debe estar el negocio en 6 a 12 meses, en tus propias palabras.</li>
-        <li><strong>A dónde se van realmente el tiempo y el dinero</strong> — no "describe tu proceso," sino repasar un día real y reciente.</li>
-        <li><strong>Cómo funciona realmente el negocio</strong> — quién hace qué, y dónde ocurren las entregas entre personas.</li>
-        <li><strong>Qué vale la pena arreglar</strong> — no todo lo que está roto necesita nueva tecnología.</li>
-        <li><strong>Dónde la IA realmente ayuda — y dónde no</strong> — te diré con claridad cuándo la respuesta es "no necesitas IA para esto."</li>
-        <li><strong>Una lista clara, ordenada por lo que importa</strong> — cada hallazgo con un número real detrás, no solo una descripción.</li>
+        <li><strong>Tu Visión, Definida</strong> — Una conversación honesta sobre dónde necesitas que esté el negocio en 6 a 12 meses, en tus propias palabras.</li>
+        <li><strong>Una Mirada al Flujo Real</strong> — Dejamos de lado el "proceso de manual" y repasamos un día real y reciente para ver dónde realmente se consumen el tiempo y el dinero.</li>
+        <li><strong>Entregas Estructurales</strong> — Mapeamos cómo funciona actualmente el negocio: quién es responsable de qué, y dónde ocurren las entregas críticas.</li>
+        <li><strong>Priorizando la Base</strong> — No todo lo que está "roto" necesita un sistema nuevo. Identificamos exactamente qué ajustes estructurales aportarán más estabilidad.</li>
+        <li><strong>IA: Realidad vs. Moda</strong> — Te diré con claridad cuándo la IA es una solución y cuándo es una distracción. Si no la necesitas, seré el primero en decírtelo.</li>
+        <li><strong>La Hoja de Ruta Accionable</strong> — Recibes una lista clara y priorizada de hallazgos vinculados a resultados reales del negocio, no descripciones vagas.</li>
       </ul>
       <p class="how-detail-promise" data-lang="en">You'll have your written findings within 3 business days of our conversation.</p>
       <p class="how-detail-promise" data-lang="es">Tendrás tus hallazgos por escrito dentro de 3 días hábiles después de nuestra conversación.</p>
-      <p class="how-detail-note" data-lang="en">I start the same way for every business — general first. Once I know your industry, the follow-up gets specific to what actually breaks in your niche.</p>
-      <p class="how-detail-note" data-lang="es">Empiezo igual con cada negocio — general primero. Una vez que conozco tu industria, el seguimiento se enfoca en lo que realmente falla en tu sector.</p>
+      <p class="how-detail-note" data-lang="en">I approach every business the same way: we start with the structural fundamentals. Once I understand your niche, the recommendations get specific to the unique stressors of your industry.</p>
+      <p class="how-detail-note" data-lang="es">Abordo cada negocio de la misma manera: empezamos por los fundamentos estructurales. Una vez que entiendo tu nicho, las recomendaciones se vuelven específicas a las tensiones únicas de tu industria.</p>
     </div>
   </div>
 </section>
@@ -413,10 +450,14 @@
 <!-- Credibility -->
 <section class="credibility">
   <div class="container credibility-inner">
-    <div class="section-label" data-lang="en">Who's behind Solara</div>
-    <div class="section-label" data-lang="es">Quién está detrás de Solara</div>
-    <p class="credibility-body" data-lang="en">US Air Force veteran turned AI consultant, backed by 13+ years of hands-on project management — Google-certified project manager and PMP Candidate (Project Management Institute). Bilingual and cross-border, with real roots in construction and emergency services.</p>
-    <p class="credibility-body" data-lang="es">Veterano de la Fuerza Aérea de EE.UU. convertido en consultor de IA, respaldado por más de 13 años de gestión de proyectos práctica — gerente de proyectos certificado por Google y candidato PMP (Project Management Institute). Bilingüe y transfronterizo, con raíces reales en construcción y servicios de emergencia.</p>
+    <div class="section-label" data-lang="en">The architect</div>
+    <div class="section-label" data-lang="es">El arquitecto</div>
+    <h2 class="section-title" data-lang="en">Built on experience, <em style="color:var(--terra); font-style:normal;">not just theory.</em></h2>
+    <h2 class="section-title" data-lang="es">Construido sobre la experiencia, <em style="color:var(--terra); font-style:normal;">no solo la teoría.</em></h2>
+    <p class="credibility-body" data-lang="en">I am a US Air Force & Army National Guard veteran with 13+ years of project management experience in high-stakes environments. I hold a Google Project Management certification and am currently a PMP candidate.</p>
+    <p class="credibility-body" data-lang="en">My approach is rooted in the precision of the military, the discipline of formal project management, and the grit of the construction and emergency services industries. I am bilingual, cross-border, and focused on one thing: building stable, scalable systems that work as hard as you do.</p>
+    <p class="credibility-body" data-lang="es">Soy veterano de la Fuerza Aérea de EE.UU. y de la Guardia Nacional del Ejército, con más de 13 años de experiencia en gestión de proyectos en entornos de alta exigencia. Cuento con la certificación de Gestión de Proyectos de Google y actualmente soy candidato PMP.</p>
+    <p class="credibility-body" data-lang="es">Mi enfoque se basa en la precisión del ámbito militar, la disciplina de la gestión de proyectos formal y la tenacidad de las industrias de construcción y servicios de emergencia. Soy bilingüe, transfronterizo y me enfoco en una sola cosa: construir sistemas estables y escalables que trabajen tan duro como tú.</p>
     <div class="credibility-link">
       <a href="https://juansoltero.com" data-lang-inline="en">Read Juan's full story →</a>
       <a href="https://juansoltero.com" data-lang-inline="es">Lee la historia completa de Juan →</a>
@@ -429,8 +470,12 @@
   <div class="container results-inner">
     <div class="section-label" data-lang="en">Results</div>
     <div class="section-label" data-lang="es">Resultados</div>
-    <p class="results-body" data-lang="en">Solara is newly launched — case studies are coming soon as engagements complete. In the meantime, the free audit costs you nothing but a conversation.</p>
-    <p class="results-body" data-lang="es">Solara está recién lanzada — los casos de éxito llegarán pronto conforme se completen los proyectos. Mientras tanto, la auditoría gratuita no te cuesta más que una conversación.</p>
+    <h2 class="section-title" data-lang="en">Proof of concept is earned <em style="color:var(--terra); font-style:normal;">in the field.</em></h2>
+    <h2 class="section-title" data-lang="es">La prueba de concepto se gana <em style="color:var(--terra); font-style:normal;">en el terreno.</em></h2>
+    <p class="results-body" data-lang="en">Solara is newly launched, and I am currently focused on building deep, high-impact results for my founding partners. Case studies will be published as these engagements reach completion.</p>
+    <p class="results-body" data-lang="en">In the meantime, the Stability Assessment costs you nothing but a conversation. If you are ready to stop managing chaos and start building a foundation, let's talk.</p>
+    <p class="results-body" data-lang="es">Solara está recién lanzada, y actualmente me enfoco en construir resultados profundos y de alto impacto para mis socios fundadores. Los casos de éxito se publicarán conforme estos proyectos lleguen a su conclusión.</p>
+    <p class="results-body" data-lang="es">Mientras tanto, la Evaluación de Estabilidad no te cuesta más que una conversación. Si estás listo para dejar de gestionar el caos y comenzar a construir una base sólida, hablemos.</p>
   </div>
 </section>
 
@@ -444,12 +489,12 @@
         <h2 class="section-title" data-lang="en">Let's have a conversation.</h2>
         <h2 class="section-title" data-lang="es">Tengamos una conversación.</h2>
         <div class="h-rule" style="margin-left:0;"></div>
-        <p class="contact-intro" data-lang="en">If your business has a problem you haven't been able to fix — slow response times, missed leads, operational chaos, or you just know something isn't working — reach out. The first conversation is always free.</p>
-        <p class="contact-intro" data-lang="es">Si tu negocio tiene un problema que no has podido resolver — tiempos de respuesta lentos, leads perdidos, caos operacional, o simplemente sabes que algo no está funcionando — comunícate. La primera conversación siempre es gratuita.</p>
+        <p class="contact-intro" data-lang="en">If your business is hitting a ceiling, or you're tired of managing the friction—whether it's communication gaps, broken hand-offs, or operational chaos—reach out. The initial Stability Assessment is always provided as a courtesy to see if we are a fit.</p>
+        <p class="contact-intro" data-lang="es">Si tu negocio ha llegado a un techo, o estás cansado de gestionar la fricción — ya sean vacíos de comunicación, entregas rotas o caos operativo — comunícate. La Evaluación de Estabilidad inicial siempre se ofrece como cortesía para ver si somos compatibles.</p>
         <div class="contact-cta">
-          <a href="https://calendly.com/juanboeckh/30min" target="_blank" rel="noopener noreferrer" class="btn-primary" data-lang-inline="en">Book a free audit</a>
-          <a href="https://calendly.com/juanboeckh/30min" target="_blank" rel="noopener noreferrer" class="btn-primary" data-lang-inline="es" style="display:none;">Reservar una auditoría gratuita</a>
-          <p class="contact-cta-note" data-lang="en">Pick a time directly — or send a message below instead.</p>
+          <a href="https://calendly.com/juanboeckh/30min" target="_blank" rel="noopener noreferrer" class="btn-primary" data-lang-inline="en">Book a Stability Assessment</a>
+          <a href="https://calendly.com/juanboeckh/30min" target="_blank" rel="noopener noreferrer" class="btn-primary" data-lang-inline="es" style="display:none;">Reservar una Evaluación de Estabilidad</a>
+          <p class="contact-cta-note" data-lang="en">Pick a time directly—or send a message below.</p>
           <p class="contact-cta-note" data-lang="es">Elige un horario directamente — o envía un mensaje abajo.</p>
         </div>
         <div class="contact-detail">
@@ -473,8 +518,8 @@
             <input class="form-input" id="c-email" type="email" required>
           </div>
           <div class="form-group">
-            <label class="form-label" data-lang="en">What's going on in your business?</label>
-            <label class="form-label" data-lang="es">¿Qué está pasando en tu negocio?</label>
+            <label class="form-label" data-lang="en">What's the current operational challenge?</label>
+            <label class="form-label" data-lang="es">¿Cuál es tu reto operativo actual?</label>
             <textarea class="form-textarea" id="c-message" required></textarea>
           </div>
           <button type="submit" class="form-submit">
@@ -497,8 +542,8 @@
     <div>
       <div class="footer-name">Solara</div>
       <div class="footer-sub sans">
-        AI Consulting · Project Management · Cross-Border<br>
-        juan@solarassoc.com · <a href="https://juansoltero.com" target="_blank" rel="noopener noreferrer">About Juan</a>
+        Fractional Operations · AI-Driven Systems · Scalable Growth<br>
+        juan@solarassoc.com · <a href="https://juansoltero.com" target="_blank" rel="noopener noreferrer" data-lang-inline="en">Read the Story</a><a href="https://juansoltero.com" target="_blank" rel="noopener noreferrer" data-lang-inline="es">Leer mi historia</a>
       </div>
     </div>
     <div class="footer-links">
@@ -518,12 +563,27 @@
 <script>
   let currentLang = 'en';
 
-  function toggleLang() {
-    currentLang = currentLang === 'en' ? 'es' : 'en';
+  function setLang(lang) {
+    currentLang = lang;
     document.body.classList.toggle('es', currentLang === 'es');
-    document.getElementById('lang-btn').textContent = currentLang === 'en' ? 'ES' : 'EN';
     document.documentElement.lang = currentLang;
+    document.querySelectorAll('.lang-opt').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.langBtn === currentLang);
+    });
+    try { localStorage.setItem('preferredLang', currentLang); } catch (e) {}
   }
+
+  // Language auto-detect: remembered choice first, then browser language, default English
+  (function initLang() {
+    var saved = null;
+    try { saved = localStorage.getItem('preferredLang'); } catch (e) {}
+    if (saved === 'en' || saved === 'es') {
+      setLang(saved);
+    } else {
+      var browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      setLang(browserLang.indexOf('es') === 0 ? 'es' : 'en');
+    }
+  })();
 
   document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
