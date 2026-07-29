@@ -72,6 +72,12 @@ app.post('/api/contact', async (req, res) => {
   res.json({ ok: true });
 });
 
+// Internal field launcher for the sales side — not linked from the site,
+// not indexed. Declared explicitly so the catch-all below doesn't swallow it.
+app.get(['/field', '/field/'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'field', 'index.html'));
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
