@@ -26,7 +26,7 @@ node server.js
 - Contact — the lead-capture form (moved here from juansoltero.com)
 
 ## Contact Form Email
-Submissions are emailed to juan@solarassoc.com through **Resend** (resend.com), not Gmail — Railway's Hobby plan blocks outbound SMTP. Needs `RESEND_API_KEY` in Railway's Variables tab. The default sender (`onboarding@resend.dev`) only delivers to the email the Resend account was created with; verify solarassoc.com in Resend and set `CONTACT_FROM` to send from the domain instead. Every submission is also printed in Railway's logs (search "CONTACT FORM SUBMISSION") as a backup. If email fails, the visitor sees an error with a direct-email link.
+Submissions are emailed to juan@solarassoc.com through **Resend** (resend.com), not Gmail — Railway's Hobby plan blocks outbound SMTP. Needs `RESEND_API_KEY` in Railway's Variables tab. The default sender (`onboarding@resend.dev`) only delivers to the email the Resend account was created with. solarassoc.com is verified in Resend, and `CONTACT_FROM` is set to website@solarassoc.com (plain address; the "Solara Website" name is added by the code). Every submission is also printed in Railway's logs (search "CONTACT FORM SUBMISSION") as a backup. If email fails, the visitor sees an error with a direct-email link.
 
 ## To Do
 - Add real case study once Angel Bravo (or another engagement) concludes — do not reference specific client details without Juan's sign-off, per client confidentiality rules

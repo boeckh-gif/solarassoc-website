@@ -14,13 +14,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Railway variables (Variables tab):
 //   RESEND_API_KEY  — required. Created in the Resend dashboard.
 //   CONTACT_TO      — optional. Where submissions go. Default: juan@solarassoc.com
-//   CONTACT_FROM    — optional. Sender shown on the email. Default uses Resend's
+//   CONTACT_FROM    — optional. Sender address only (e.g. website@solarassoc.com);
+//                     the "Solara Website" name is added automatically. Default uses Resend's
 //                     shared test sender, which only delivers to the email the
-//                     Resend account was created with. Once solarassoc.com is
-//                     verified in Resend, set this to e.g.
-//                     "Solara Website <website@solarassoc.com>".
+//                     Resend account was created with. solarassoc.com is
+//                     verified in Resend, so this is set to website@solarassoc.com.
 const CONTACT_TO = process.env.CONTACT_TO || 'juan@solarassoc.com';
-const CONTACT_FROM = process.env.CONTACT_FROM || 'Solara Website <onboarding@resend.dev>';
+// CONTACT_FROM can be a plain address ("website@solarassoc.com") or a full
+// "Name <address>". Either way the email goes out as "Solara Website <address>".
+function buildFrom(raw) {
+  const match = (raw || '').match(/[^\s<>"]+@[^\s<>"]+/);
+  const address = match ? match[0] : 'onboarding@resend.dev';
+  return `Solara Website <${address}>`;
+}
+const CONTACT_FROM = buildFrom(process.env.CONTACT_FROM);
 
 if (!process.env.RESEND_API_KEY) {
   console.warn('RESEND_API_KEY not set — contact-form emails will NOT send.');
