@@ -25,6 +25,8 @@ node server.js
 - Results — honest placeholder, no fabricated case studies (nothing to show yet)
 - Contact — the lead-capture form (moved here from juansoltero.com)
 
+## Contact Form Email
+Submissions are emailed to juan@solarassoc.com through **Resend** (resend.com), not Gmail — Railway's Hobby plan blocks outbound SMTP. Needs `RESEND_API_KEY` in Railway's Variables tab. The default sender (`onboarding@resend.dev`) only delivers to the email the Resend account was created with; verify solarassoc.com in Resend and set `CONTACT_FROM` to send from the domain instead. Every submission is also printed in Railway's logs (search "CONTACT FORM SUBMISSION") as a backup. If email fails, the visitor sees an error with a direct-email link.
+
 ## To Do
-- **Contact form doesn't actually notify anyone (found 2026-07-12).** `/api/contact` only writes to `data/contacts.json` on the server — no email is sent, and Railway's filesystem isn't guaranteed to persist that file across redeploys/restarts. Anyone submitting the live form right now has no guarantee Juan ever sees it. Needs wiring to send an email via `juan@solarassoc.com` (nodemailer + Google Workspace SMTP, credentials in Railway env vars, not hardcoded) — flagged to Juan, not yet fixed.
 - Add real case study once Angel Bravo (or another engagement) concludes — do not reference specific client details without Juan's sign-off, per client confidentiality rules

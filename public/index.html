@@ -223,6 +223,10 @@
     .form-textarea { resize: vertical; min-height: 120px; }
     .form-submit { width: 100%; padding: 14px; background: var(--terra); color: white; border: none; font-family: -apple-system, sans-serif; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border-radius: var(--radius); transition: background 0.2s; margin-top: 0.5rem; }
     .form-submit:hover { background: var(--terra-dark); }
+    .form-submit:disabled { opacity: 0.6; cursor: wait; }
+    .form-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .form-error { display: none; margin-top: 1rem; padding: 1rem; background: #fef2f2; border: 1px solid #fecaca; border-radius: var(--radius); font-family: -apple-system, sans-serif; font-size: 14px; color: #b91c1c; }
+    .form-error a { color: #b91c1c; }
     .form-success { display: none; padding: 1rem; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius); font-family: -apple-system, sans-serif; font-size: 14px; color: #15803d; }
 
     /* Footer */
@@ -556,15 +560,23 @@
             <label class="form-label" data-lang="es">¿Cuál es tu reto operativo actual?</label>
             <textarea class="form-textarea" id="c-message" required></textarea>
           </div>
-          <button type="submit" class="form-submit">
+          <div class="form-hp" aria-hidden="true">
+            <label for="c-website">Website</label>
+            <input id="c-website" type="text" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <button type="submit" class="form-submit" id="c-submit">
             <span data-lang-inline="en">Send message</span>
             <span data-lang-inline="es">Enviar mensaje</span>
           </button>
-          <div class="form-success" id="form-success">
-            <span data-lang-inline="en">Message received. I'll be in touch soon.</span>
-            <span data-lang-inline="es">Mensaje recibido. Me pondré en contacto pronto.</span>
+          <div class="form-error" id="form-error" role="alert">
+            <span data-lang-inline="en">Sorry, your message didn't go through. Please email me directly at <a href="mailto:juan@solarassoc.com">juan@solarassoc.com</a>.</span>
+            <span data-lang-inline="es">Lo siento, tu mensaje no se pudo enviar. Por favor escríbeme directamente a <a href="mailto:juan@solarassoc.com">juan@solarassoc.com</a>.</span>
           </div>
         </form>
+        <div class="form-success" id="form-success" role="status">
+          <span data-lang-inline="en">Message received. I'll be in touch soon.</span>
+          <span data-lang-inline="es">Mensaje recibido. Me pondré en contacto pronto.</span>
+        </div>
       </div>
     </div>
   </div>
@@ -640,24 +652,34 @@
 
   document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
+    const btn = document.getElementById('c-submit');
+    const errBox = document.getElementById('form-error');
     const data = {
       name: document.getElementById('c-name').value,
       email: document.getElementById('c-email').value,
       message: document.getElementById('c-message').value,
+      website: document.getElementById('c-website').value,
       lang: currentLang
     };
+    btn.disabled = true;
+    errBox.style.display = 'none';
+    let ok = false;
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
-      if (res.ok) {
-        document.getElementById('contact-form').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      }
+      ok = res.ok;
     } catch(err) {
-      alert('Message could not be sent. Please email directly.');
+      ok = false;
+    }
+    if (ok) {
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      errBox.style.display = 'block';
+      btn.disabled = false;
     }
   });
 </script>

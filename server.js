@@ -1,75 +1,89 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
-const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = 3002;
 
-app.use(express.json());
+app.use(express.json({ limit: '20kb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Email transport — reads credentials from Railway environment variables.
-// SMTP_USER / SMTP_PASS must be set to juan@solarassoc.com and a Google
-// Workspace "app password" (not the account password) in Railway's
-// Variables tab. If they're missing, form submissions still get logged
-// locally below, but no email will send — check Railway logs for the
-// "SMTP not configured" warning if that happens.
-let transporter = null;
-if (process.env.SMTP_USER && process.env.SMTP_PASS) {
-  transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
-    }
-  });
-} else {
-  console.warn('SMTP not configured — set SMTP_USER and SMTP_PASS in Railway to enable contact-form emails.');
+// Contact-form email goes out through Resend (resend.com), an email API that
+// works over normal HTTPS. We don't use Gmail/SMTP because Railway's Hobby
+// plan blocks outbound SMTP entirely.
+//
+// Railway variables (Variables tab):
+//   RESEND_API_KEY  — required. Created in the Resend dashboard.
+//   CONTACT_TO      — optional. Where submissions go. Default: juan@solarassoc.com
+//   CONTACT_FROM    — optional. Sender shown on the email. Default uses Resend's
+//                     shared test sender, which only delivers to the email the
+//                     Resend account was created with. Once solarassoc.com is
+//                     verified in Resend, set this to e.g.
+//                     "Solara Website <website@solarassoc.com>".
+const CONTACT_TO = process.env.CONTACT_TO || 'juan@solarassoc.com';
+const CONTACT_FROM = process.env.CONTACT_FROM || 'Solara Website <onboarding@resend.dev>';
+
+if (!process.env.RESEND_API_KEY) {
+  console.warn('RESEND_API_KEY not set — contact-form emails will NOT send.');
 }
 
-// Contact form endpoint
+async function sendContactEmail({ name, email, message, lang }) {
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: CONTACT_FROM,
+      to: [CONTACT_TO],
+      reply_to: email,
+      subject: `New website inquiry from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nLanguage: ${lang}\n\nMessage:\n${message}\n\n— Sent from the contact form on solarassoc.com. Hit reply to answer ${name} directly.`
+    })
+  });
+  if (!res.ok) {
+    throw new Error(`Resend responded ${res.status}: ${await res.text()}`);
+  }
+}
+
+const clean = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
+
 app.post('/api/contact', async (req, res) => {
-  const { name, email, message, lang } = req.body;
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: 'Missing fields' });
-  }
-  const entry = {
-    date: new Date().toISOString(),
-    name, email, message, lang: lang || 'en'
-  };
+  const body = req.body || {};
 
-  // Always log locally first, regardless of whether email sending works.
-  const logPath = path.join(__dirname, 'data', 'contacts.json');
-  if (!fs.existsSync(path.join(__dirname, 'data'))) {
-    fs.mkdirSync(path.join(__dirname, 'data'));
-  }
-  const existing = fs.existsSync(logPath)
-    ? JSON.parse(fs.readFileSync(logPath, 'utf8'))
-    : [];
-  existing.push(entry);
-  fs.writeFileSync(logPath, JSON.stringify(existing, null, 2));
-  console.log(`New contact from ${name} <${email}>`);
-
-  // Try to email it. If this fails, still tell the visitor it worked
-  // (their message was logged) but log the error server-side for Juan.
-  if (transporter) {
-    try {
-      await transporter.sendMail({
-        from: `"Solara Website" <${process.env.SMTP_USER}>`,
-        to: 'juan@solarassoc.com',
-        replyTo: email,
-        subject: `New contact form submission from ${name}`,
-        text: `Name: ${name}\nEmail: ${email}\nLanguage: ${lang || 'en'}\n\nMessage:\n${message}`
-      });
-    } catch (err) {
-      console.error('Failed to send contact-form email:', err.message);
-    }
+  // Hidden "website" field: people never see it, spam bots fill it in.
+  // Pretend success so the bot moves on, but send nothing.
+  if (body.website) {
+    return res.json({ ok: true });
   }
 
-  res.json({ ok: true });
+  const name = clean(body.name, 200);
+  const email = clean(body.email, 200);
+  const message = clean(body.message, 5000);
+  const lang = body.lang === 'es' ? 'es' : 'en';
+
+  if (!name || !email || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ error: 'Missing or invalid fields' });
+  }
+
+  // Backup copy in Railway's logs, so a lead is never fully lost even if
+  // the email step fails.
+  console.log('CONTACT FORM SUBMISSION:', JSON.stringify({ date: new Date().toISOString(), name, email, lang, message }));
+
+  if (!process.env.RESEND_API_KEY) {
+    console.error('Contact form: RESEND_API_KEY missing, email not sent.');
+    return res.status(503).json({ error: 'Email not configured' });
+  }
+
+  try {
+    await sendContactEmail({ name, email, message, lang });
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('Contact form: email failed —', err.message);
+    // Tell the visitor it didn't go through, so they can email directly
+    // instead of thinking they were heard.
+    res.status(502).json({ error: 'Email failed' });
+  }
 });
 
 // Internal field launcher for the sales side — not linked from the site,
